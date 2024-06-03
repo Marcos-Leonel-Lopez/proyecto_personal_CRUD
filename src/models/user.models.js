@@ -1,11 +1,11 @@
 /* eslint-disable indent */
+// VALIDAR QUE LOS DATOS SEAN UNICOS EN CASO DE SER REQUERIDO, GARANTIZAR LA INTEGRIDAD DE LA BASE DE DATOS
 import { randomUUID } from 'crypto';
-import { readJSON } from '../utils.js';
+import { readJSON, timestampCreate } from '../utils.js';
 const users = readJSON('../empleados.json');
 
-export default class UserController {
+export default class UserModel {
     static getAll = async ({ filt }) => {
-        console.log(users);
         if (filt) {
             return users.filter((user) => user.role.toLowerCase() === filt.toLowerCase());
         }
@@ -18,10 +18,14 @@ export default class UserController {
     };
 
     static create = async ({ data }) => {
+        console.log(typeof (timestampCreate()));
+
         const newUser = {
             id: randomUUID(),
-            ...data
+            ...data,
+            createTime: timestampCreate()
         };
+        console.log(newUser);
         users.push(newUser);
         return newUser;
     };
@@ -35,17 +39,24 @@ export default class UserController {
         return true;
     };
 
-    static update = async ({ id, data }) => {
-        const index = users.findIndex((user) => user.id === id);
-        if (index === -1) {
-            return false;
-        }
-        const updatedUser = {
-           ...users[index],
-           ...data
-        };
-        users[index] = updatedUser;
-        return updatedUser;
+    // static update = async ({ id, data }) => {
+    //     const index = users.findIndex((user) => user.id === id);
+    //     if (index === -1) {
+    //         return false;
+    //     }
+    //     const updatedUser = {
+    //         ...users[index],
+    //         ...data
+    //     };
+    //     users[index] = updatedUser;
+    //     return updatedUser;
+    // };
+
+    static updateSpecific = async () => {
+        users.forEach(user => {
+            user.createTime = timestampCreate();
+        });
+        return users;
     };
 
     static updatePartial = async ({ id, data }) => {
@@ -54,8 +65,8 @@ export default class UserController {
             return false;
         }
         const updatedUser = {
-           ...users[index],
-           ...data
+            ...users[index],
+            ...data
         };
         users[index] = updatedUser;
         return updatedUser;

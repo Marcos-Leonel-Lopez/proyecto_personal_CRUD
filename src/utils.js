@@ -14,3 +14,7 @@ const require = createRequire(import.meta.url);
 export const readJSON = (dirr) => {
     return require(path.join(__dirname, dirr));
 };
+
+export function timestampCreate () {
+    return Date.now();
+}

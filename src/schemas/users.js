@@ -19,7 +19,6 @@ const userSchema = z.object({
       invalid_type_error: 'El rol debe ser admin, grte o emp',
       required_error: 'El rol es requerido'
     })
-
 });
 
 function validateUser (object) {

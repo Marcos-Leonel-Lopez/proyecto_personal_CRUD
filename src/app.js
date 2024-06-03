@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 
 import __dirname from './utils.js';
 import userRouter from './routes/users.router.js';
+
 // // parche para utilizar json
 // import { createRequire } from 'module';
 
@@ -16,7 +17,7 @@ app.use(express.static(__dirname + '/public'));
 app.disable('x-powered-by');
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
+  console.log(`App listening on port ${PORT}!`);
 });
 // // parche para utilizar json
 // const require = createRequire(import.meta.url);
