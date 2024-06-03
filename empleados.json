@@ -1,0 +1,44 @@
+[
+  {
+    "id": "34a64589-ffcd-458c-b4e1-e64702ccfb3e",
+    "name": "Marco",
+    "age": 25,
+    "email": "marcos@gmail.com",
+    "role": "admin"
+  },
+  {
+    "id": "13db996a-5b43-463e-8ee6-344745b1d944",
+    "name": "Luciana",
+    "age": 25,
+    "email": "lu@gmail.com",
+    "role": "grte"
+  },
+  {
+    "id": "3a4d4b03-31dd-494d-bcbc-b4cad7711760",
+    "name": "Juan",
+    "age": 25,
+    "email": "juan@gmail.com",
+    "role": "emp"
+  },
+  {
+    "id": "774cf231-854f-4458-be22-74559ae7bfba",
+    "name": "Pedro",
+    "age": 25,
+    "email": "pedro@gmail.com",
+    "role": "emp"
+  },
+  {
+    "id": "3cbd5695-0987-4a46-b3c4-5b9f39c2ed86",
+    "name": "Paula",
+    "age": 123,
+    "email": "pau@gmail.com",
+    "role": "emp"
+  },
+  {
+    "id": "a378e718-b86e-4ed2-98a2-cd89931b15d5",
+    "name": "Pao",
+    "age": 123,
+    "email": "pao@gmail.com",
+    "role": "emp"
+  }
+]
