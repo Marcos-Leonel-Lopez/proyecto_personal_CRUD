@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 // VALIDAR QUE LOS DATOS SEAN UNICOS EN CASO DE SER REQUERIDO, GARANTIZAR LA INTEGRIDAD DE LA BASE DE DATOS
 import { randomUUID } from 'crypto';
-import { readJSON, timestampCreate } from '../utils.js';
+import { readJSON, timestampCreate } from '../../utils.js';
 const users = readJSON('../empleados.json');
 
 export default class UserModel {
@@ -18,14 +18,11 @@ export default class UserModel {
     };
 
     static create = async ({ data }) => {
-        console.log(typeof (timestampCreate()));
-
         const newUser = {
             id: randomUUID(),
             ...data,
             createTime: timestampCreate()
         };
-        console.log(newUser);
         users.push(newUser);
         return newUser;
     };
@@ -72,8 +69,8 @@ export default class UserModel {
         return updatedUser;
     };
 
-    static deleteAll = async () => {
-        users.splice(0, users.length);
-        return true;
-    };
+    // static deleteAll = async () => {
+    //     users.splice(0, users.length);
+    //     return true;
+    // };
 }

@@ -3,14 +3,15 @@ import { Router } from 'express';
 
 import UserController from '../controllers/users.controller.js';
 
+const userController = new UserController();
 const router = Router();
 
-router.get('/', UserController.getAll);
-router.get('/:id', UserController.getById);
+router.get('/', userController.getAll);
+router.get('/:id', userController.getById);
 
-router.post('/', UserController.create);
-router.delete('/:id', UserController.delete);
-router.patch('/:id', UserController.updatePartial);
-// router.patch('/Specific', UserController.updateSpecific);
+router.post('/', userController.create);
+router.delete('/:id', userController.delete);
+router.patch('/Specific', userController.updateSpecific);
+router.patch('/:id', userController.updatePartial);
 
 export default router;
