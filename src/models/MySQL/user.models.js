@@ -7,6 +7,7 @@ import { MySqlDBConnection } from '../../config/MySQL.config.js';
 export class UserModel {
     static getAll = async ({ role }) => {
         try {
+            let statusResult;
             const connection = MySqlDBConnection.getConnection();
             let query = 'SELECT * FROM users';
             const params = [];
@@ -20,8 +21,13 @@ export class UserModel {
                 }
             }
             const [rows] = await connection.query(query, params);
+            if (rows.length === 0) {
+                statusResult = 204;
+            } else {
+                statusResult = 200;
+            }
             return {
-                status: 200,
+                status: statusResult,
                 data: {
                     status: 'success',
                     success: true,
@@ -115,11 +121,41 @@ export class UserModel {
     };
 
     static delete = async ({ id }) => {
-        const connection = MySqlDBConnection.getConnection();
-        const query = 'DELETE FROM users WHERE id = ?;';
-        const params = [id];
-        const [user] = await connection.query(query, params);
-        return user;
+        try {
+            const connection = MySqlDBConnection.getConnection();
+            let query = 'SELECT * FROM users WHERE id = ?;';
+            const params = [id];
+            const [rows] = await connection.query(query, params);
+            if (rows.length === 0) {
+                return {
+                    status: 404,
+                    data: {
+                        status: 'error',
+                        success: false,
+                        message: 'User not found'
+                    }
+                };
+            }
+            query = 'DELETE FROM users WHERE id = ?;';
+            await connection.query(query, params);
+            return {
+                status: 200,
+                data: {
+                    status: 'success',
+                    success: true,
+                    message: 'User successfully deleted'
+                }
+            };
+        } catch (error) {
+            return {
+                status: 500,
+                data: {
+                    status: 'error',
+                    success: false,
+                    message: error
+                }
+            };
+        }
     };
 
     static updateSpecific = async () => {

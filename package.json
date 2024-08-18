@@ -4,7 +4,7 @@
   "main": "src\\app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"
   },
@@ -16,16 +16,20 @@
   },
   "description": "CRUD employer",
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "crypto": "^1.0.1",
+    "cookie-parser": "1.4.6",
+    "crypto": "1.0.1",
     "dotenv": "16.4.5",
     "express": "4.19.2",
     "mysql2": "3.10.0",
+    "passport": "0.7.0",
+    "passport-local": "1.0.0",
     "zod": "3.23.8"
   },
   "devDependencies": {
+    "jest": "29.7.0",
     "nodemon": "^3.1.2",
-    "semistandard": "17.0.0"
+    "semistandard": "17.0.0",
+    "supertest": "7.0.0"
   },
   "eslintConfig": {
     "extends": "semistandard"

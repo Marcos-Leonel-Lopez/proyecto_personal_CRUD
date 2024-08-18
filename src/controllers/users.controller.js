@@ -53,22 +53,17 @@ export default class UserController {
         }
     };
 
-    // create = async (req, res) => {
-    //     const resultado = validateUser(req.body);
-    //     if (resultado.error) {
-    //         return res.status(422).json({ error: JSON.parse(resultado.error.message) });
-    //     }
-    //     const newUser = await userService.create({ data: resultado.data });
-    //     res.status(201).json({ message: 'Empleado creado exitosamente', data: newUser });
-    // };
-
     delete = async (req, res) => {
-        const { id } = req.params;
-        const result = await userService.delete({ id });
-        if (result) {
-            return res.status(200).json({ message: 'Usuario eliminado' });
+        try {
+            const { id } = req.params;
+            const { status, data } = await userService.delete({ id });
+            res.status(status).json(data);
+        } catch (error) {
+            res.status(500).json({
+                status: 'error',
+                message: 'Internal Server Error'
+            });
         }
-        res.status(404).json({ error: 'No encontrado' });
     };
 
     updatePartial = async (req, res) => {

@@ -19,4 +19,4 @@ app.listen(PORT, () => {
 
 app.use('/api/users', userRouter);
 
-export { app };
+export default app;
